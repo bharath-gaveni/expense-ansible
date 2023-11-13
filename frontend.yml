@@ -1,0 +1,34 @@
+- name: expense project Frontend set up
+  hosts: all
+  become: yes
+  tasks:
+    - name: installing nginx webserver
+      ansible.builtin.yum:
+        name: nginx
+        state: present
+    - name: coping expense.conf file to some location or destination(this is called reverse proxy i.e connecting to frontend to backend like frontend sending requests to backend)
+      ansible.builtin.copy:
+        src: expense.conf
+        dest: /etc/nginx/default.d/expense.conf
+    - name: removing files in directory is some what difficult so we removing the entire directory
+      ansible.builtin.file:
+        path: /usr/share/nginx/html
+        state: directory
+    - name: creating directory
+      ansible.builtin.file:
+        path: /usr/share/nginx/html
+        state: directory
+    - name: Downloading and Extracting or unzipping the frontend content
+      ansible.builtin.unarchive:
+        src: https://expense-artifacts.s3.amazonaws.com/frontend.zip
+        dest: /usr/share/nginx/html
+        remote_src: yes
+    - name: Restarting and enable the nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
+        enabled: yes
+
+
+
+
