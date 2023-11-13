@@ -38,9 +38,9 @@
       ansible.builtin.shell: npm install
       args:
         chdir: /app
-    - name: reloading and starting the nodejs
+    - name: reloading and starting the backend
       ansible.builtin.service:
-        name: nodejs
+        name: backend
         state: restarted
         enabled: yes
         daemon-reload: yes
