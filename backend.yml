@@ -39,7 +39,7 @@
       args:
         chdir: /app
     - name: loading schema to mysql client
-      ansible.built.shell: mysql -h mysql-dev.bharathgaveni.online -uroot -p{{MY_SQL_ROOT_PASSWORD}} < /app/schema/backend.sql
+      ansible.builtin.shell: mysql -h mysql-dev.bharathgaveni.online -uroot -p{{MY_SQL_ROOT_PASSWORD}} < /app/schema/backend.sql
     - name: start backend service
       ansible.builtin.service:
         name: backend
