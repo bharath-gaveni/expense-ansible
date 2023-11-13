@@ -1,19 +1,19 @@
--name: expense-app mysql set up
-hosts: all
-become: yes
-tasks:
-  - name: Disable mysql default version it is coming with centos 8 because we need some 5.7 version (we don't have dnf module in ansible module so we use shell command to execute)
-    ansible.builtin.shell: dnf module disable mysql -y
-  - name: coping mysql.repo file to some path
-    ansible.builtin.copy:
+- name: expense-app mysql set up
+  hosts: all
+  become: yes
+  tasks:
+    - name: Disable mysql default version it is coming with centos 8 because we need some 5.7 version (we don't have dnf module in ansible module so we use shell command to execute)
+      ansible.builtin.shell: dnf module disable mysql -y
+    - name: coping mysql.repo file to some path
+      ansible.builtin.copy:
       src: mysql.repo
       dest: /etc/yum.repos.d/mysql.repo
-  - name: installing mysql-community-server
-    ansible.builtin.yum:
-      name: mysql-community-server
-      state: present
-  - name: starting and enabling mysqld
-    ansible.builtin.service:
-      name: mysqld
-      state: restarted
-      enabled: yes
+    - name: installing mysql-community-server
+      ansible.builtin.yum:
+        name: mysql-community-server
+        state: present
+    - name: starting and enabling mysqld
+      ansible.builtin.service:
+        name: mysqld
+        state: restarted
+        enabled: yes
