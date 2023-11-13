@@ -3,7 +3,7 @@
   become: yes
   tasks:
     - name: installing nginx webserver
-      ansible.builtin.yum:
+      ansible.builtin.dnf:
         name: nginx
         state: present
     - name: coping expense.conf file to some location or destination(this is called reverse proxy i.e connecting to frontend to backend like frontend sending requests to backend)
@@ -24,7 +24,7 @@
         dest: /usr/share/nginx/html
         remote_src: yes
     - name: Restarting and enable the nginx
-      ansible.builtin.service:
+      ansible.builtin.systemd:
         name: nginx
         state: restarted
         enabled: yes
