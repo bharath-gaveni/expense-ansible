@@ -5,7 +5,7 @@
     - name: Install NodeJS, By default NodeJS 10 is available, We would like to enable 18 version and install list.
       ansible.builtin.shell: dnf module disable nodejs -y
     - name: enabling nodejs 18 version
-      ansible.builtin.shell: dnf module enable nodejs:18
+      ansible.builtin.shell: dnf module enable nodejs:18 -y
     - name: installing nodejs18
       ansible.builtin.dnf:
         - name: nodejs
