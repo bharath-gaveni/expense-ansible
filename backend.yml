@@ -1,0 +1,49 @@
+- name: expense-app project backend set up
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install NodeJS, By default NodeJS 10 is available, We would like to enable 18 version and install list.
+      ansible.builtin.shell: dnf module disable nodejs -y
+    - name: enabling nodejs 18 version
+      ansible.builtin.shell: dnf module enable nodejs:18
+    - name: installing nodejs18
+      ansible.builtin.dnf:
+        - name: nodejs
+          state: present
+    - name: installing mysql client
+      ansible.builtin.dnf:
+        - name: mysql
+          state: present
+    - name: copying backend service file
+      ansible.builtin.copy:
+        src: backend.service
+        dest: /app
+    - name: Removing entire old directory because in ansible it is difficult to remove files
+      ansible.builtin.file:
+        path: /app
+        state: directory
+    - name: Creating new directory
+      ansible.builtin.file:
+        path: /app
+        state: directory
+    - name: Downloading and unzipping the backend Application content in app location
+      ansible.builtin.unarchive:
+        src: https://expense-artifacts.s3.amazonaws.com/backend.zip
+        dest: /app
+        remote_src: yes
+    - name: downloading dependencies for nodejs software
+      npm:
+        name: nodejs
+        global: yes
+    - name: reloading and starting the nodejs
+      ansible.builtin.service:
+        name: nodejs
+        state: reloaded
+        enabled: yes
+    - name: loading schema to mysql client
+      ansible.builtin.shell: mysql -h mysql-dev.bharathgaveni.online -uroot -p{{MY_SQL_ROOT_PASSWORD}} < /app/schema/backend.sql
+    - name: start backend service
+      ansible.builtin.service:
+        name: backend
+        state: restarted
+
