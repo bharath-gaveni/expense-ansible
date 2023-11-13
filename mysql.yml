@@ -3,7 +3,7 @@
   become: yes
   tasks:
     - name: CentOS-8 Comes with MySQL 8 Version by default, However our application needs MySQL 5.7. So lets disable MySQL 8 version.
-      ansible.builtin.shell: module disable mysql -y
+      ansible.builtin.shell: dnf module disable mysql -y
     - name: copying mysql.repo file
       ansible.builtin.copy:
         src: mysql.repo
