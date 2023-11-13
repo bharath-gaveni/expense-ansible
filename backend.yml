@@ -18,6 +18,9 @@
       ansible.builtin.copy:
         src: backend.service
         dest: /etc/systemd/system/backend.service
+    - name: adding user
+      ansible.builtin.user:
+        -name: expense
     - name: Removing entire old directory because in ansible it is difficult to remove files
       ansible.builtin.file:
         path: /app
