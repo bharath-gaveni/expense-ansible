@@ -14,7 +14,7 @@
   ansible.builtin.user:
     name: expense
 - name: copying backend service file
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: backend.service
     dest: /etc/systemd/system/backend.service
 - name: import common role - app-prereq
