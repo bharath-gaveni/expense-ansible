@@ -17,9 +17,9 @@
   ansible.builtin.copy:
     src: backend.service
     dest: /etc/systemd/system/backend.service
-- name: import same role - app-prereq
+- name: import common role - app-prereq
   ansible.builtin.import_role:
-    name: same
+    name: common
     tasks_from: app-prereq
   vars:
     app_dir: /app

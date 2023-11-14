@@ -6,9 +6,9 @@
   ansible.builtin.copy:
     src: expense.conf
     dest: /etc/nginx/default.d/expense.conf
-- name: import same role - app-prereq
+- name: import common role - app-prereq
   ansible.builtin.import_role:
-    name: same
+    name: common
     tasks_from: app-prereq
   vars:
     app_dir: /usr/share/nginx/html
@@ -18,3 +18,4 @@
     name: nginx
     state: restarted
     enabled: yes
+
