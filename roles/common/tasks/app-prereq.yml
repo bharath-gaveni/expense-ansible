@@ -1,0 +1,13 @@
+- name: Removing or deleting a directory (because nfr i.e  no problem will arise when reruns)
+  ansible.builtin.file:
+    path: "{{ app_dir }}"
+    state: absent
+- name: adding directory
+  ansible.builtin.file:
+    path: "{{ app_dir }}"
+    state: directory
+- name: downloading and unzipping the content in app location
+  ansible.builtin.unarchive:
+    src: https://expense-artifacts.s3.amazonaws.com/{{component}}.zip
+    dest: "{{ app_dir }}"
+    remote_src: yes

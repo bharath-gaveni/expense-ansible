@@ -6,19 +6,13 @@
   ansible.builtin.copy:
     src: expense.conf
     dest: /etc/nginx/default.d/expense.conf
-- name: removing or deleting the Directory because in ansible removing files is difficult
-  ansible.builtin.file:
-    path: /usr/share/nginx/html
-    state: directory
-- name: Adding the Directory
-  ansible.builtin.file:
-    path: /usr/share/nginx/html
-    state: directory
-- name: downloading and unzipping the content
-  ansible.builtin.unarchive:
-    src: https://expense-artifacts.s3.amazonaws.com/frontend.zip
-    dest: /usr/share/nginx/html
-    remote_src: yes
+- name: import common role - app-prereq
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-prereq
+  vars:
+    app_dir: /usr/share/nginx/html
+    component: frontend
 - name: restarting nginx webserver
   ansible.builtin.service:
     name: nginx
