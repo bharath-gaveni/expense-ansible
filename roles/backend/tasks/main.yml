@@ -35,5 +35,5 @@
     enabled: yes
     daemon-reload: yes
 - name: loading schema to mysql client
-  ansible.builtin.shell: mysql -h mysql-dev.bharathgaveni.online -uroot -p{{MY_SQL_ROOT_PASSWORD}} < /app/schema/backend.sql
+  ansible.builtin.shell: mysql -h mysql-{{env}}.bharathgaveni.online -uroot -p{{MY_SQL_ROOT_PASSWORD}} < /app/schema/backend.sql
 
