@@ -1,0 +1,14 @@
+- name: create file for dashboard
+  ansible.builtin.template:
+    src: dashboard.json
+    dest: /tmp/dashboard.json
+
+- name: add Grafana dashboard
+  grafana_dashboard:
+    grafana_url: http://172.31.41.50:3000
+  #  grafana_api_key: "{{ lookup('amazon.aws.aws_ssm', grafana_api_key, region='us-east-1' ) }}"
+    grafana_api_key: glsa_JJi8tQxqk27yDii0wCQAvrGaHeUXau4p_707d5aaf
+    state: present
+    message: Updated by ansible
+    overwrite: yes
+    path: /tmp/dashboard.json
