@@ -6,4 +6,5 @@ groups:
         for: 1m
         labels:
           severity: critical
-        annotations: instance down alert
+        annotations:
+          summary: instance down alert
