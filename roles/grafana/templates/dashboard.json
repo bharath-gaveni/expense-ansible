@@ -194,7 +194,9 @@
           "editorMode": "code",
           "expr": "(node_memory_MemFree_bytes{Name=\"frontend-dev\"}+node_memory_Cached_bytes{Name=\"frontend-dev\"}+node_memory_Buffers_bytes{Name=\"frontend-dev\"})/(node_memory_MemTotal_bytes{Name=\"frontend-dev\"})*100",
           "instant": false,
+        {% raw %}
           "legendFormat": "{{Name}}",
+        {% endraw %}
           "range": true,
           "refId": "A"
         }
