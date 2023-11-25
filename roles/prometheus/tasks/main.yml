@@ -3,12 +3,12 @@
     src: prometheus.yml
     dest: /opt/prometheus/prometheus.yml
 
-- name: copy alert-rules of common.yml
+- name: copy alert-rules
   ansible.builtin.template:
     src: common.yml
     dest: /opt/prometheus/alert-rules/common.yml
 
-- name: Reload the prometheus
+- name: reload the prometheus
   ansible.builtin.shell: kill 1 $(ps -ef | grep /opt/prometheus/prometheus | grep -v grep | awk '{print $2}')
 
 - name: Copy AlertManager configuration
@@ -16,7 +16,7 @@
     src: alertmanager.yml
     dest: /opt/alertmanager/alertmanager.yml
 
-- name: Reload the AlertManager
+- name: reload the alertmanager
   ansible.builtin.shell: kill 1 $(ps -ef | grep /opt/alertmanager/alertmanager | grep -v grep | awk '{print $2}')
 
 
