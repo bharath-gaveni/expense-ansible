@@ -11,7 +11,7 @@
 - name: reload the prometheus
   ansible.builtin.shell: kill 1 $(ps -ef | grep /opt/prometheus/prometheus | grep -v grep | awk '{print $2}')
 
-- name: Copy AlertManager configuration
+- name: copy alertmanager configuration
   ansible.builtin.template:
     src: alertmanager.yml
     dest: /opt/alertmanager/alertmanager.yml
