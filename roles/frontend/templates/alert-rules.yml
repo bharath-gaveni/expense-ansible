@@ -7,6 +7,6 @@ groups:
     labels:
       severity: warning
       component: {{ component }}
-      env: {{ env }}
+      env: {{ dev }}
     annotations:
       summary: warning | CPU down alert
