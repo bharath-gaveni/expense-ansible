@@ -36,12 +36,12 @@
 - name: Add frontend Alert YAML file
   ansible.builtin.template:
     src: alert-rules.yml
-    dest: /tmp/{{ component }}-{{ env }}
+    dest: /tmp/{{ component }}-{{ env }}.yml
 
 - name: upload frontend Alert File to s3 Bucket
   community.aws.s3_sync:
     bucket: prometheus-frontend-alert-file
-    file_root: /tmp/{{ component }}-{{ env }}
+    file_root: /tmp/{{ component }}-{{ env }}.yml
 
 
 
