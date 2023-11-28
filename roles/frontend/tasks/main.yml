@@ -32,3 +32,16 @@
 - name: import grafana - Dashboard creation
   ansible.builtin.import_role:
     name: grafana
+
+- name: Add Alert YAML file
+  ansible.builtin.template:
+    src: alert-rules.yml
+    dest: /tmp/alert-rules.yml
+
+- name: upload frontend Alert File to s3 Bucket
+  ansible.aws.s3_sync:
+    bucket: prometheus-frontend-alert-file
+    file_root: /tmp/alert-rules.yml
+
+
+
