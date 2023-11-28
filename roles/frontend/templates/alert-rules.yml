@@ -1,5 +1,5 @@
 groups:
-- name: {{ component }}-{{ dev }}
+- name: {{ component }}-{{ env }}
   rules:
   - alert: CPUUsageAlert
     expr: avg by (instance) ((1 - rate(node_cpu_seconds_total{mode="idle"}[5m])) *100)
@@ -7,6 +7,6 @@ groups:
     labels:
       severity: warning
       component: {{ component }}
-      env: {{ dev }}
+      env: {{ env }}
     annotations:
       summary: warning | CPU down alert
