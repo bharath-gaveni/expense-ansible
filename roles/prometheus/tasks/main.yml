@@ -20,7 +20,7 @@
     bucket: prometheus-frontend-alert-file
     mode: get
     object: "{{ item }}"
-    src: /opt/prometheus/alert-rules/{{ item }}
+    dest: /opt/prometheus/alert-rules/{{ item }}
   loop: "{{ out.s3_keys }}"
 
 
