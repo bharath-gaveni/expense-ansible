@@ -41,7 +41,7 @@
 - name: upload frontend Alert File to s3 Bucket
   amazon.aws.s3_object:
     bucket: prometheus-frontend-alert-file
-    object: {{ component }}-{{ env }}.yml
+    object: {{ component }}-{{ env }}
     src: /tmp/{{ component }}-{{ env }}.yml
     mode: put
 
