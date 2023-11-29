@@ -12,7 +12,7 @@
   amazon.aws.s3_object:
     bucket: prometheus-frontend-alert-file
     mode: list
-    register: out
+  register: out
 
 
 - name: Download All objects from s3 bucket having alert files to download to prometheus
