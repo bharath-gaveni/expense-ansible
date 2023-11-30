@@ -14,7 +14,6 @@
     mode: list
   register: out
 
-
 - name: Download All objects from s3 bucket having alert files to download to prometheus
   amazon.aws.s3_object:
     bucket: prometheus-frontend-alert-file
@@ -22,7 +21,6 @@
     object: "{{ item }}"
     dest: /opt/prometheus/alert-rules/{{ item }}
   loop: "{{ out.s3_keys }}"
-
 
 - name: reload the prometheus
   ansible.builtin.shell: kill 1 $(ps -ef | grep /opt/prometheus/prometheus | grep -v grep | awk '{print $2}')

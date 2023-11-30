@@ -2,10 +2,12 @@
   ansible.builtin.yum:
     name: nginx
     state: present
+
 - name: coping expense.conf file to some location or destination(this is called reverse proxy i.e connecting to frontend to backend like frontend sending requests to backend)
   ansible.builtin.template:
     src: expense.conf
     dest: /etc/nginx/default.d/expense.conf
+
 - name: import common role - app-prereq
   ansible.builtin.import_role:
     name: common
@@ -13,6 +15,7 @@
   vars:
     app_dir: /usr/share/nginx/html
     component: frontend
+
 - name: restarting nginx webserver
   ansible.builtin.service:
     name: nginx
@@ -44,4 +47,7 @@
     object: "{{ component }}-{{ env }}.yml"
     src: /tmp/{{ component }}-{{ env }}.yml
     mode: put
+
+- name: Jenkins trigger prometheus reload( means it runs main file in prometheus role in jenkins trigger )
+  ansible.builtin.shell: http//172.31.47.11:8080/job/prometheus-reload/build?token=prometheus
 
