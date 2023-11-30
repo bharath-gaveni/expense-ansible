@@ -50,3 +50,23 @@ groups:
       env: { { env } }
     annotations:
       summary: critical | dummy
+
+  - alert: NetworkBWMonitorWaitQueue
+    expr:
+    for: 3m
+    labels:
+      severity: critical
+      component: { { component } }
+      env: { { env } }
+    annotations:
+      summary: critical | Network wait queue high
+
+  - alert: NginxServiceMonitor
+    expr: 
+    for: 1m
+    labels:
+      severity: critical
+      component: { { component } }
+      env: { { env } }
+    annotations:
+      summary: critical | Frontend Nginx service down
