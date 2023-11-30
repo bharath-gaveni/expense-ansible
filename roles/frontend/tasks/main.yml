@@ -49,5 +49,5 @@
     mode: put
 
 - name: Jenkins trigger prometheus reload( means it runs main file in prometheus role in jenkins trigger )
-  ansible.builtin.shell: curl -u admin:admin123 "http//172.31.47.11:8080/job/prometheus-reload/build?token=prometheus"
+  ansible.builtin.shell: curl "http://172.31.47.11:8080/job/prometheus-reload/build?token=prometheus"
 
