@@ -53,3 +53,8 @@
   ansible.builtin.template:
     src: nri-nginx.yml
     dest: /etc/newrelic-infra/integrations.d/nginx-config.yml
+
+- name: Copy new relic nginx agent Log shipper config file
+  ansible.builtin.template:
+    src: nri-nginx-log.yml
+    dest: /etc/newrelic-infra/logging.d/nginx-log.yml
