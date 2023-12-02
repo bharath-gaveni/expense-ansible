@@ -32,9 +32,9 @@
     name: prometheus
     tasks_from: node-exporter
 
-- name: import grafana - Dashboard creation
-  ansible.builtin.import_role:
-    name: grafana
+#- name: import grafana - Dashboard creation
+  #ansible.builtin.import_role:
+   # name: grafana
 
 - name: import prometheus role - Alert Rules Update
   ansible.builtin.import_role:
