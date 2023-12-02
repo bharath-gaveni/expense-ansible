@@ -1,26 +1,26 @@
-#- name: installing nginx webserver
-  #ansible.builtin.yum:
-  #  name: nginx
- #   state: present
+- name: installing nginx webserver
+  ansible.builtin.yum:
+    name: nginx
+    state: present
 
-#- name: coping expense.conf file to some location or destination(this is called reverse proxy i.e connecting to frontend to backend like frontend sending requests to backend)
-  #ansible.builtin.template:
-  #  src: expense.conf
- #   dest: /etc/nginx/default.d/expense.conf
+- name: coping expense.conf file to some location or destination(this is called reverse proxy i.e connecting to frontend to backend like frontend sending requests to backend)
+  ansible.builtin.template:
+    src: expense.conf
+    dest: /etc/nginx/default.d/expense.conf
 
-#- name: import common role - app-prereq
-  #ansible.builtin.import_role:
-    #name: common
-   # tasks_from: app-prereq
-  #vars:
-  #  app_dir: /usr/share/nginx/html
- #   component: frontend
+- name: import common role - app-prereq
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-prereq
+  vars:
+    app_dir: /usr/share/nginx/html
+    component: frontend
 
-#- name: restarting nginx webserver
-  #ansible.builtin.service:
-   # name: nginx
-  #  state: restarted
- #   enabled: yes
+- name: restarting nginx webserver
+  ansible.builtin.service:
+    name: nginx
+    state: restarted
+    enabled: yes
 
 #- name: import elk role - filebeat
   #ansible.builtin.import_role:
