@@ -22,24 +22,24 @@
     state: restarted
     enabled: yes
 
-#- name: import elk role - filebeat
-  #ansible.builtin.import_role:
-  #   name: elk
- #    tasks_from: filebeat
+- name: import elk role - filebeat
+  ansible.builtin.import_role:
+     name: elk
+     tasks_from: filebeat
 
-#- name: import prometheus - node-exporter
-  #ansible.builtin.import_role:
-    #name: prometheus
-    #tasks_from: node-exporter
+- name: import prometheus - node-exporter
+  ansible.builtin.import_role:
+    name: prometheus
+    tasks_from: node-exporter
 
-#- name: import grafana - Dashboard creation
-  #ansible.builtin.import_role:
-   # name: grafana
+- name: import grafana - Dashboard creation
+  ansible.builtin.import_role:
+    name: grafana
 
-#- name: import prometheus role - Alert Rules Update
- # ansible.builtin.import_role:
-  #  name: prometheus
-   # tasks_from: alert-rules-update
+- name: import prometheus role - Alert Rules Update
+  ansible.builtin.import_role:
+    name: prometheus
+    tasks_from: alert-rules-update
 
 - name: install New Relic Agent
   ansible.builtin.shell: curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && sudo NEW_RELIC_API_KEY=NRAK-C6LJUPON4143YTY479RYLV56Z1G NEW_RELIC_ACCOUNT_ID=4264991 /usr/local/bin/newrelic install -n infrastructure-agent-installer -y --tag {{ component}}-{{ env }}
