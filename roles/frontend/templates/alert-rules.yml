@@ -57,7 +57,7 @@ groups:
 #    labels:
 #      severity: critical
 #      component: {{ component }}
-#      env: {{ env }}
+#      env: {{env}}
 #    annotations:
 #      summary: critical | Network wait queue high
 #
@@ -66,7 +66,7 @@ groups:
 #    for: 1m
 #    labels:
 #      severity: critical
-#      component: {{ component }}
-#      env: {{ env }}
+#      component: {{component}}
+#      env: {{env}}
 #    annotations:
 #      summary: critical | Frontend Nginx service down
